@@ -13,7 +13,9 @@
 
 ## Allgemeines
 
-Im Ordner "workshop" befinden sich die Slides dises Workshops## Requirements
+:bulb: Im Ordner "workshop" befinden sich die Slides dises Workshops
+
+## Requirements
 
 - Node.js
 
