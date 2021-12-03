@@ -230,7 +230,8 @@ https://docs.cypress.io/guides/references/roadmap#Upcoming-features
 
 ## Ressourcen
 
-- Cypress-Workshop: https://github.com/cypress-io/testing-workshop-cypress
+- offizieller Cypress-Workshop: https://github.com/cypress-io/testing-workshop-cypress
+- Cypress in Dev-Containern: https://github.com/cypress-io/cypress-documentation/issues/2956
 - Cypress Blog: https://www.cypress.io/blog., u.a.
 	- Challenging Test-Pyramid: https://www.cypress.io/blog/2019/07/23/guest-post-challenging-the-testing-pyramid/
 	- Cypress+Storybook: https://www.cypress.io/blog/2021/05/19/cypress-x-storybook-2-0/
