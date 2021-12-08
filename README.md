@@ -57,11 +57,14 @@ npm run cypress (in separatem Terminal-Fenster)
 
 ### Setup
 
-### Einrichtung des Cypress-Dashboards
-
 ## Konfiguration der CI/CD-Pipeline
-.yml-Datei mit Github-Action (`https://github.com/marketplace/actions/cypress-io`) im Ordner `.github/workflows` hinzufügen.
 
 ### GitHub
+.yml-Datei mit Github-Action (`https://github.com/marketplace/actions/cypress-io`) im Ordner `.github/workflows` hinzufügen.
+
+## Einrichtung des Cypress-Dashboards
+- neues Projekt im Cypress-Dashboard anlegen
+- projectId in cypress.json eintragen
+- Secret für `CYPRESS_RECORD_KEY` in Github eintragen
 
 ### Netlify
