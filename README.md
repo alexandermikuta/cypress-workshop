@@ -45,6 +45,16 @@ In package.json folgende Zeile zu "scripts"-Objekt hinzufügen:
 "cypress": "cypress open"
 ```
 
+Die Specs liegen üblicherweise im Ordner `cypress/integration`
+
+Starten der Cypress-Tests:
+```console
+npm run build
+npm run starter
+
+npm run cypress (in separatem Terminal-Fenster)
+```
+
 ### Setup
 
 ### Einrichtung des Cypress-Dashboards
