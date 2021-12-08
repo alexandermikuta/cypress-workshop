@@ -27,7 +27,11 @@
   - ...
 
 ## Einrichtung des Frontend-Projektes
-npm init svelte@next frontend
+
+```console
+npx create-next-app nextjs-frontend --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
+cd nextjs-frontend
+```
 
 ## Einrichtung von Cypress
 
