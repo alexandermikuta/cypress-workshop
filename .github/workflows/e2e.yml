@@ -12,6 +12,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          working-directory: nextjs-frontend
           build: npm run build
           start: npm run start
           wait-on: 'http://localhost:3000'
