@@ -1,7 +1,5 @@
 # Cypress
 
-***
-
 ## Einführung
 
 ### Was ist Cypress?
@@ -10,7 +8,7 @@ https://docs.cypress.io/guides/overview/why-cypress
 
 ### Grundlegende Konzepte
 
-![concepts](https://cypress-io.ghost.io/blog/content/images/2019/07/cypress-capabilities.png)
+![concepts](images/cypress-capabilities.png)
 
 https://docs.cypress.io/guides/core-concepts/introduction-to-cypress
 https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests
@@ -146,7 +144,7 @@ https://www.cypress.io/blog/2019/07/29/github-integration-for-the-cypress-dashbo
 
 https://docs.cypress.io/guides/tooling/code-coverage#Introduction
 
-![Istanbul Report](https://docs.cypress.io/_nuxt/img/100percent.8d7d304.png)
+![Istanbul Report](images/istanbul.png)
 
 Code Coverage kann mit Istanbul (https://istanbul.js.org/) angezeigt werden.
 Dies ist über einen zusatzlichen Build-Schritt in zwei Varianten möglich:
@@ -156,7 +154,7 @@ Dies ist über einen zusatzlichen Build-Schritt in zwei Varianten möglich:
 
 :bulb: Für .lcov coverage-Files gibt es auch Plugins für IDEs (z.B. Coverage-Gutters für VS-Code):
 
-![Coverage-Gutters](https://github.com/ryanluker/vscode-coverage-gutters/raw/HEAD/promo_images/coverage-gutters-features-1.gif)
+![Coverage-Gutters](images//coverage-gutters-features-1.gif)
 
 Coverage kann auch in CI integriert werden, z.B. auf GitHub: https://www.cypress.io/blog/2019/10/22/show-code-coverage-on-gitlab-ci/
 

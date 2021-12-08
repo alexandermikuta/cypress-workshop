@@ -27,6 +27,7 @@
   - ...
 
 ## Einrichtung des Frontend-Projektes
+npm init svelte@next frontend
 
 ## Einrichtung von Cypress
 
