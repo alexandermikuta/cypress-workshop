@@ -60,6 +60,7 @@ npm run cypress (in separatem Terminal-Fenster)
 ### Einrichtung des Cypress-Dashboards
 
 ## Konfiguration der CI/CD-Pipeline
+.yml-Datei mit Github-Action (`https://github.com/marketplace/actions/cypress-io`) im Ordner `.github/workflows` hinzufügen.
 
 ### GitHub
 
