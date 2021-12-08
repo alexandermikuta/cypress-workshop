@@ -1,14 +1,13 @@
 # cypress-workshop
 ## Roadmap des Workshops
 
-- [ ] Beschreibung der Requirements
-- [ ] Beschreibung der IDE-Einrichtung
-- [ ] Beschreibung des Frontend-Projektes
-- [ ] Beschreibung Cypress
-  - [ ] Setup
-  - [ ] Dashboard
+- [x] Beschreibung der Requirements
+- [x] Beschreibung der IDE-Einrichtung
+- [x] Beschreibung des Frontend-Projektes
+- [x] Beschreibung Cypress-Installation
 - [ ] Beschreibung der CI/CD-Pipeline
-  - [ ] Github
+  - [x] Github
+  - [x] Cypress-Dashboard mit Projekt/Github verknüpfen
   - [ ] Netlify
 
 ## Allgemeines
@@ -23,10 +22,9 @@
 
 :bulb: Die zugehörige .vscode-Datei befindet sich im Beispielprojekte
 
-- verwendete Plugins:
-  - ...
+Beim öffnen des Projektes in VS-Code sollten einige nützliche Plugins zur Installation vorgeschlagen werden.
 
-## Einrichtung des Frontend-Projektes
+## Einrichtung des Frontend-Projekts
 
 ```console
 npx create-next-app nextjs-frontend --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
@@ -55,14 +53,12 @@ npm run starter
 npm run cypress (in separatem Terminal-Fenster)
 ```
 
-### Setup
-
 ## Konfiguration der CI/CD-Pipeline
 
 ### GitHub
 .yml-Datei mit Github-Action (`https://github.com/marketplace/actions/cypress-io`) im Ordner `.github/workflows` hinzufügen.
 
-## Einrichtung des Cypress-Dashboards
+### Einrichtung des Cypress-Dashboards
 - neues Projekt im Cypress-Dashboard anlegen
 - projectId in cypress.json eintragen
 - Secret für `CYPRESS_RECORD_KEY` in Github eintragen
