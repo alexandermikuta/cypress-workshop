@@ -35,7 +35,18 @@ cd nextjs-frontend
 
 ## Einrichtung von Cypress
 
+```console
+cd nextjs-frontend
+npm install --save-dev cypress
+```
+
+In package.json folgende Zeile zu "scripts"-Objekt hinzufügen:
+```json
+"cypress": "cypress open"
+```
+
 ### Setup
+
 ### Einrichtung des Cypress-Dashboards
 
 ## Konfiguration der CI/CD-Pipeline
