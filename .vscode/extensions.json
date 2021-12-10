@@ -19,6 +19,7 @@
     "shardulm94.trailing-spaces",
     "ms-vsliveshare.vsliveshare-pack",
     "redhat.vscode-yaml",
-    "cschleiden.vscode-github-actions"
+    "cschleiden.vscode-github-actions",
+    "evilz.vscode-reveal"
   ]
 }
