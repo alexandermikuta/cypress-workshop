@@ -5,10 +5,9 @@
 - [x] Beschreibung der IDE-Einrichtung
 - [x] Beschreibung des Frontend-Projektes
 - [x] Beschreibung Cypress-Installation
-- [ ] Beschreibung der CI/CD-Pipeline
+- [x] Beschreibung der CI/CD-Pipeline
   - [x] Github
   - [x] Cypress-Dashboard mit Projekt/Github verknüpfen
-  - [ ] Netlify
 
 ## Allgemeines
 
@@ -23,6 +22,7 @@
 :bulb: Die zugehörige .vscode-Datei befindet sich im Beispielprojekte
 
 Beim öffnen des Projektes in VS-Code sollten einige nützliche Plugins zur Installation vorgeschlagen werden.
+Bei Bedarf findet man weitere IDE-Plugins unter: https://docs.cypress.io/guides/tooling/IDE-integration
 
 ## Einrichtung des Frontend-Projekts
 
@@ -43,7 +43,23 @@ In package.json folgende Zeile zu "scripts"-Objekt hinzufügen:
 "cypress": "cypress open"
 ```
 
-Die Specs liegen üblicherweise im Ordner `cypress/integration`
+Folgende File-Struktur wird automatisch bei erstem öffnen von Cypress angelegt:
+```
+.
+├── downloads
+├── fixtures
+│   └── example.json
+├── integration
+│   └── app.spec.js
+├── plugins
+│   └── index.js
+└── support
+    ├── commands.js
+    └── index.js
+```
+
+Die Specs werden dabei im  Ordner `cypress/integration` abgelegt.
+Sobald eine erste Spec geschrieben wurde, kann diese in Cypress ausgeführt werden:
 
 Starten der Cypress-Tests:
 ```console
@@ -62,5 +78,3 @@ npm run cypress (in separatem Terminal-Fenster)
 - neues Projekt im Cypress-Dashboard anlegen
 - projectId in cypress.json eintragen
 - Secret für `CYPRESS_RECORD_KEY` in Github eintragen
-
-### Netlify

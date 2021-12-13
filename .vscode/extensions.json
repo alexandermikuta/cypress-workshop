@@ -20,6 +20,9 @@
     "ms-vsliveshare.vsliveshare-pack",
     "redhat.vscode-yaml",
     "cschleiden.vscode-github-actions",
-    "evilz.vscode-reveal"
+    "evilz.vscode-reveal",
+    "tnrich.vscode-extension-open-cypress",
+    "shevtsov.vscode-cy-helper",
+    "josefbiehler.cypress-fixture-intellisense"
   ]
 }

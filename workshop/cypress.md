@@ -1,31 +1,42 @@
 ---
-theme : "Moon"
+theme : "league"
 ---
+
+<style>
+th { font-size: 22px; }
+td { font-size: 16px; }
+li { font-size: 22px; }
+blockquote { font-size: 22px; }
+</style>
 
 # Cypress
 
 ---
 
-## Was ist Cypress?
+## Praxis-Demo
+
+Zum starten der Demo muss folgendes ausgeführt werden:
+
+In Terminal 1:
+```bash
+cd nextjs-frontend
+npm install
+npm run build
+npm run start
+```
+In Terminal 2:
+```bash
+cd nextjs-frontend
+npm run cypress
+```
+
+---
+
+# Warum Cypress?
 
 https://docs.cypress.io/guides/overview/why-cypress
 
----
-
-## Grundlegende Konzepte
-
 ![concepts](images/cypress-capabilities.png)
-
----
-
-https://docs.cypress.io/guides/core-concepts/introduction-to-cypress
-https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests
-https://docs.cypress.io/guides/core-concepts/retry-ability
-https://docs.cypress.io/guides/core-concepts/interacting-with-elements
-https://docs.cypress.io/guides/core-concepts/variables-and-aliases
-https://docs.cypress.io/guides/core-concepts/conditional-testing
-https://docs.cypress.io/guides/core-concepts/test-runner
-https://docs.cypress.io/guides/core-concepts/cypress-studio
 
 ---
 
@@ -35,20 +46,56 @@ https://docs.cypress.io/guides/references/trade-offs
 
 ---
 
+**Dauerhafte Trade-Offs**
 
-## Vergleich mit anderen Tools
+- läuft im Browser: gut für direkten (Shadow-)DOM-Zugriff. Schlecht um Dinge außerhalb eines Browsers zu testen.
+- Kein Support für mehrere Browser-Tabs
+- Keine Automatisierung mehrerer Browser zur gleichen Zeit. Nur indirekt, z.B. weiteren Backend-Prozess mit Selenium, Puppeteer, ...
+- Jeder Test ist an einen single-origin (gleicher Port, gleiche Hauptdomain) gebunden
+- nicht gedacht für: Web-Indexing, Spidering, Performance-Testing
+- Kein natives Testen mobiler Apps möglich. Nur einfache Funktionstests, falls Mobile-App im Browser entwickelt wird (z.B. mit Ionic)
+  - Mögliche Alternativen: z.B. Appium, Detox oder Ranorex
+
+---
+
+**Temporäre Trade-Offs**
+
+- Limitierter iframe-Support
+- kein cy.hover()
+- kein cy.tab()
+
+---
+
+## Disabled Barriers
+
+> Cypress deaktiviert störende Funktionen im Auto-Test: https://docs.cypress.io/guides/guides/launching-browsers#Disabled-Barriers
+
+- Ignoriert Zertifikats-Fehler
+- Erlaubt blockiert Pop-Ups
+- Deaktiviert 'Passwort speichern'
+- Deaktiviert 'Autofill für Formulare und Passwörter'
+- Deaktiviert Nachfrage nach Standbrowser
+- Deaktiviert Benachrichtigung über neu gefundene Geräte
+- Deaktiviert Browser-Übersetzungen
+- Deaktiviert Wiederherstellen von Sessions
+- Deaktiviert Hintergrund Netwerk-Verkehr
+- Deaktiviert Hintergrund und Renderer Drosselung
+- Deaktiviert Dialoge mit Berechtigungsnachfragen, z.B. für Mikrofon, Webcam, ...
+- Deaktiviert Benutzergesten für Autoplay von Videos
+
+> kann bei Bedarf über Kommandozeilen-Parameter angepasst werden!
+
+---
+
+# Vergleich mit anderen Tools
 
 https://docs.cypress.io/guides/overview/key-differences
 
 ---
 
-Protractor mittlerweile deprecated:
+> Protractor mittlerweile deprecated: https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49
 
- https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49
-
-***
-
- Für Migrations-Projekte: https://docs.cypress.io/guides/migrating-to-cypress/protractor#Introduction
+> Für Migrations-Projekte: https://docs.cypress.io/guides/migrating-to-cypress/protractor#Introduction
 
 ---
 
@@ -67,41 +114,37 @@ flowchart TB
 			end
 		end
 ```
+---
+
+| Cypress                           | Selenium                                     |
+|-----------------------------------|----------------------------------------------|
+| läuft im run-loop der Applikation | Schickt commands über Treiber an den Browser |
+
+> Gilt analog für W3C WebDriverAPI-basierte Tools wie WebdriverIO und NightwatchJS
+
+> Details siehe: https://www.browserstack.com/guide/cypress-vs-webdriverio
 
 ---
 
-|                       | Cypress                             | Selenium              | Puppeteer  | Playwright     | WebdriverIO  | TestCafe    | NightwatchJS     | CodeceptJS  | Appium |
-|-----------------------|-------------------------------------|-----------------------|------------|----------------|--------------|-------------|------------------|-------------|--------|
-| Webseite              | cypress.io                          | selenium.dev          | pptr.dev   | playwright.dev | webdriver.io | testcafe.io | nightwatchjs.org | codecept.io |        |
-| Anforderungen         | Node.js 12+                         |                       |            |                |              |             |                  |             |        |
-| Browser               | Chrome/ium, Edge, Electron, Firefox | über Driver           |            |                |              |             |                  |             |        |
-| Cross-Browser Testing | nein                                |                       |            | ja             |              |             |                  |             |        |
-| Mutli-Tab Testing     | nur indirekt                        |                       |            | ja             |              |             |                  |             |        |
-| direkter DOM-Zugriff  | ja                                  | nein                  |            |                |              |             |                  |             |        |
-| Docker-Images         | ja                                  |                       |            |                |              |             |                  |             |        |
-| Parallele Tests       | unterstützt je Browser              |                       |            |                |              |             |                  |             |        |
-| Test Retries          | ja                                  | nein                  |            |                |              |             |                  |             |        |
-| Automatic Wait        | ja                                  | nein                  |            |                |              |             |                  |             |        |
-| Time Travel Debugger  | ja                                  | nein                  |            |                |              |             |                  |             |        |
-| Sprache               | JavaScript                          | Java, Python, C#, ... | JavaScript | JavaScript     | JavaScript   | JavaScript  |                  |             |        |
+|                       | Cypress                             | Puppeteer                    | Playwright             | TestCafe                               |
+|-----------------------|-------------------------------------|------------------------------|------------------------|----------------------------------------|
+| Webseite              | https://cypress.io                  | https://pptr.dev             | https://playwright.dev | https://testcafe.io                    |
+| Anforderungen         | Node.js 12+                         | Node 10.18.1+                |                        |                                        |
+| Browser               | Chrome/ium, Edge, Electron, Firefox | (Headless) Chrome/ium        |                        |                                        |
+| Cross-Browser Testing | nein                                | nur für unterstütze Browser  | ja                     |                                        |
+| Multi-Tab Testing     | nur indirekt                        | ja                           | ja                     | ja                                     |
+| direkter DOM-Zugriff  | ja                                  | ja                           | ja                     | ja                                     |
+| Docker-Images         | ja                                  | siehe Troubleshooting/Docker |                        | ja                                     |
+| Test Recorder         | Cypress Studio in alpha             | ab Chrome 92: in DevTools    | Playwright codegen     | kostenpflichtiger Visual Test Recorder |
+| Component Testing     | ja                                  | nein                         | nein                   | nein                                   |
+| Parallele Tests       | unterstützt je Browser              | ja                           | ja                     | ja                                     |
+| Test Retries          | ja                                  |                              |                        | ja                                     |
+| Automatic Wait        | ja                                  |                              |                        | ja                                     |
+| Time Travel Debugger  | ja                                  |                              |                        | nein                                   |
+| Dashboard             | ja                                  | nein                         | nein                   | in Alpha Test                          |
+| Sprache               | JavaScript/TypeScript               | JavaScript                   | JavaScript             | JavaScript                             |
 
----
-
-## Cypress Details
-
----
-
-### Konfiguration
-
-Animationen?
-
-https://www.cypress.io/blog/2021/03/01/generate-high-resolution-videos-and-screenshots/
-
----
-
-#### IDE
-
-https://docs.cypress.io/guides/tooling/IDE-integration
+> Lösungen mit Puppeteer, Playwright, TestCafe, WebDriver oder Appium lassen sich gut mit Codecept kombinieren: https://codecept.io
 
 ---
 
@@ -145,53 +188,75 @@ Die Premium-Features enthalten zusätzlich je nach gewähltem Plan: https://cypr
 
 ---
 
-### Component Testing
+### Component Testing (noch in Alpha-Status)
 
-https://docs.cypress.io/guides/component-testing/introduction#What-is-Component-Testing
-https://www.cypress.io/blog/2021/04/06/introducing-the-cypress-component-test-runner/
-https://www.cypress.io/blog/2021/04/06/getting-start-with-cypress-component-testing-vue-2-3/
-https://www.cypress.io/blog/2021/04/06/cypress-component-testing-react/
+https://docs.cypress.io/guides/component-testing/introduction
+
+![concepts](images/component-testing.png)
+
+---
+
+```javascript
+import * as React from 'react'
+import { mount } from '@cypress/react'
+import Button from './Button'
+
+it('Button', () => {
+  mount(<Button>Test button</Button>)
+  cy.get('button').contains('Test button').click()
+})
+```
+
+***
+
+- Komponenten können isoliert getestet werden
+- Vergleichbar mit Jest-Komponententests in Storybook
+- Aktuell verfügbar für React/Next und Vue über Webpack (Vite ist noch experimentell)
 
 ---
 
 ### Visual Testing
 
 https://docs.cypress.io/guides/tooling/visual-testing
-https://www.cypress.io/blog/2019/07/11/visual-testing-with-cypress/
-https://www.cypress.io/blog/2019/04/19/webinar-recording-cypress-io-percy-end-to-end-functional-and-visual-testing-for-the-web/
+
+![concepts](images/visual-testing.png)
+
+- Lokal möglich, z.B. mittels https://github.com/meinaart/cypress-plugin-snapshots
+- Cloud-Anbieter:
+  - https://applitools.com/
+  - https://percy.io/
+  - https://happo.io/
 
 ---
 
-### BDD
+```javascript
+// Beispiel: https://github.com/meinaart/cypress-plugin-snapshots
+
+it('completes todo', () => {
+  cy.visit('/')
+  cy.get('.new-todo').type('write tests{enter}')
+  cy.contains('.todo-list li', 'write tests').find('.toggle').check()
+
+  cy.contains('.todo-list li', 'write tests').should('have.class', 'completed')
+
+  // run 'npm i cypress-plugin-snapshots -S'
+  // capture the element screenshot and
+  // compare to the baseline image
+  cy.get('.todoapp').toMatchImageSnapshot({
+    imageConfig: {
+      threshold: 0.001,
+    },
+  })
+})
+```
 
 ---
 
 ### CI/CD
 
 - Github-Action verfügbar: https://github.com/marketplace/actions/cypress-io
-
-https://docs.cypress.io/guides/continuous-integration/github-actions#Cypress-GitHub-Action
-https://docs.cypress.io/guides/dashboard/github-integration
-https://www.cypress.io/blog/2021/03/04/live-webcast-netlify-cypress/
-https://www.netlify.com/blog/2021/03/11/netlify-build-plugin-of-the-week-cypress/
-https://www.cypress.io/blog/2019/11/20/drastically-simplify-your-testing-with-cypress-github-action/
-https://www.cypress.io/blog/2019/07/29/github-integration-for-the-cypress-dashboard/
-
----
-
-#### Grundlagen
-
----
-
-#### Tests aufnehmen
-
----
-
-#### Parallele Tests
-
----
-
-#### Arbeiten mit Docker
+- Gitlab: https://docs.cypress.io/guides/continuous-integration/gitlab-ci#Basic-Setup
+- Jenkins: Bei Testbench CS wurde das Docker-Image in der Pipeline verwendet und die Reports im junit-Format gepublished
 
 ---
 
@@ -239,6 +304,16 @@ Ein Beispiel für einen Custom-Reporter existiert für die TestbenchCS: https://
 
 ### Best-Practices
 
+https://docs.cypress.io/guides/core-concepts/introduction-to-cypress
+https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests
+https://docs.cypress.io/guides/core-concepts/retry-ability
+https://docs.cypress.io/guides/core-concepts/interacting-with-elements
+https://docs.cypress.io/guides/core-concepts/variables-and-aliases
+https://docs.cypress.io/guides/core-concepts/conditional-testing
+https://docs.cypress.io/guides/core-concepts/test-runner
+https://docs.cypress.io/guides/core-concepts/cypress-studio
+
+---
 
 - siehe: https://docs.cypress.io/guides/references/best-practices
 - YouTube Talk: https://www.youtube.com/watch?v=5XQOK0v_YRE
@@ -247,31 +322,10 @@ Ein Beispiel für einen Custom-Reporter existiert für die TestbenchCS: https://
 
 ### Plugins
 
-https://docs.cypress.io/guides/tooling/plugins-guide
-https://www.cypress.io/blog/2017/11/22/extending-cypress-with-plugins/
+- https://docs.cypress.io/guides/tooling/plugins-guide
+- https://docs.cypress.io/plugins/directory
 
-- https://github.com/testing-library/cypress-testing-library
-
----
-
-### Disabled Barriers
-
-Cypress automatically disabled certain functionality that tend to get in the way of automated testing: https://docs.cypress.io/guides/guides/launching-browsers#Disabled-Barriers
-
-- Ignores certificate errors.
-- Allows blocked pop-ups.
-- Disables 'Saving passwords'.
-- Disables 'Autofill forms and passwords'.
-- Disables asking to become your primary browser.
-- Disables device discovery notifications.
-- Disables language translations.
-- Disables restoring sessions.
-- Disables background network traffic.
-- Disables background and renderer throttling.
-- Disables prompts requesting permission to use devices like cameras or mics
-- Disables user gesture requirements for autoplaying videos.
-
-kann bei Bedarf über Kommandozeilen-Parameter angepasst werden!
+Es ist möglich Cypress auch mit eigenen Plugins zu erweitern :-)
 
 ---
 
@@ -294,6 +348,10 @@ https://docs.cypress.io/guides/references/roadmap#Upcoming-features
 
 - offizieller Cypress-Workshop: https://github.com/cypress-io/testing-workshop-cypress
 - Cypress Blog: https://www.cypress.io/blog
+- Recipes: https://docs.cypress.io/examples/examples/recipeshttps://docs.cypress.io/examples/examples/recipes
+- Chrome-Plugins:
+  - Cypress-Recorder: https://chrome.google.com/webstore/detail/cypress-scenario-recorder/fmpgoobcionmfneadjapdabmjfkmfekb
+  - Cypress Scenario Recorder: https://chrome.google.com/webstore/detail/cypress-scenario-recorder/fmpgoobcionmfneadjapdabmjfkmfekb
 
 ---
 
