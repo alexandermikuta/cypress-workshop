@@ -126,23 +126,27 @@ flowchart TB
 
 ---
 
-|                       | Cypress                             | Puppeteer                    | Playwright             | TestCafe                               |
-|-----------------------|-------------------------------------|------------------------------|------------------------|----------------------------------------|
-| Webseite              | https://cypress.io                  | https://pptr.dev             | https://playwright.dev | https://testcafe.io                    |
-| Anforderungen         | Node.js 12+                         | Node 10.18.1+                |                        |                                        |
-| Browser               | Chrome/ium, Edge, Electron, Firefox | (Headless) Chrome/ium        |                        |                                        |
-| Cross-Browser Testing | nein                                | nur für unterstütze Browser  | ja                     |                                        |
-| Multi-Tab Testing     | nur indirekt                        | ja                           | ja                     | ja                                     |
-| direkter DOM-Zugriff  | ja                                  | ja                           | ja                     | ja                                     |
-| Docker-Images         | ja                                  | siehe Troubleshooting/Docker |                        | ja                                     |
-| Test Recorder         | Cypress Studio in alpha             | ab Chrome 92: in DevTools    | Playwright codegen     | kostenpflichtiger Visual Test Recorder |
-| Component Testing     | ja                                  | nein                         | nein                   | nein                                   |
-| Parallele Tests       | unterstützt je Browser              | ja                           | ja                     | ja                                     |
-| Test Retries          | ja                                  |                              |                        | ja                                     |
-| Automatic Wait        | ja                                  |                              |                        | ja                                     |
-| Time Travel Debugger  | ja                                  |                              |                        | nein                                   |
-| Dashboard             | ja                                  | nein                         | nein                   | in Alpha Test                          |
-| Sprache               | JavaScript/TypeScript               | JavaScript                   | JavaScript             | JavaScript                             |
+|                       | Cypress                 | Puppeteer                    | Playwright                                | TestCafe                                                      |
+|-----------------------|-------------------------|------------------------------|-------------------------------------------|---------------------------------------------------------------|
+| Webseite              | https://cypress.io      | https://pptr.dev             | https://playwright.dev                    | https://testcafe.io                                           |
+| Anforderungen         | Node.js 12+             | Node 10.18.1+                | Node.js 12+                               | Node.js 10+                                                   |
+| Browser               | Chromium, Edge, Firefox | Chromium                     | Chrome/ium, Edge, Firefox, WebKit         | Chromium, Edge, Firefox, Safari, IE11+, Chrome-/Safari-Mobile |
+| Cross-Browser Testing | nein                    | nur für unterstütze Browser  | ja                                        | ja                                                            |
+| Multi-Tab Testing     | nur indirekt            | ja                           | ja                                        | ja                                                            |
+| direkter DOM-Zugriff  | ja                      | ja                           | ja                                        | ja                                                            |
+| Docker-Images         | ja                      | siehe Troubleshooting/Docker | ja                                        | ja                                                            |
+| Test Recorder         | Cypress Studio in alpha | ab Chrome 92: in DevTools    | Playwright codegen                        | kostenpflichtiger Visual Test Recorder                        |
+| Component Testing     | ja                      | nein                         | nein                                      | nein                                                          |
+| Visual Testing        | ja                      | ja                           | ja                                        | ja                                                            |
+| Parallele Tests       | unterstützt je Browser  | ja                           | ja                                        | ja                                                            |
+| Test Retries          | ja                      | ja                           | ja                                        | ja                                                            |
+| Automatic Wait        | ja                      | nein                         | ja                                        | ja                                                            |
+| Network Interception  | ja                      | ja                           | ja                                        | ja                                                            |
+| Time Travel Debugger  | ja                      | nein                         | Trace Viewer + VS-Code-Debugging          | nein                                                          |
+| Dashboard             | ja                      | nein                         | nein                                      | in Alpha Test                                                 |
+| Sprache               | JavaScript/TypeScript   | JavaScript/Typescript        | JavaScript/Typescript, Python, Java, .NET | JavaScript/Typescript                                         |
+
+---
 
 > Lösungen mit Puppeteer, Playwright, TestCafe, WebDriver oder Appium lassen sich gut mit Codecept kombinieren: https://codecept.io
 
