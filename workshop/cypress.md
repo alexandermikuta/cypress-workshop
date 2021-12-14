@@ -1,5 +1,5 @@
 ---
-theme : "league"
+theme: "league"
 ---
 
 <style>
@@ -18,13 +18,16 @@ blockquote { font-size: 22px; }
 Zum starten der Demo muss folgendes ausgeführt werden:
 
 In Terminal 1:
+
 ```bash
 cd nextjs-frontend
 npm install
 npm run build
 npm run start
 ```
+
 In Terminal 2:
+
 ```bash
 cd nextjs-frontend
 npm run cypress
@@ -32,17 +35,20 @@ npm run cypress
 
 ---
 
-# Warum Cypress?
+## Warum Cypress?
 
-https://docs.cypress.io/guides/overview/why-cypress
+*https://docs.cypress.io/guides/overview/why-cypress*
 
-![concepts](images/cypress-capabilities.png)
+![concepts](images/cypress-capabilities.png){ width=70% }
+
+> - Testen mit verschiedenen Viewports möglich
+> - Zugriff auf Local-Storage, Service-Worker, usw.
 
 ---
 
 ## Trade-Offs
 
-https://docs.cypress.io/guides/references/trade-offs
+> https://docs.cypress.io/guides/references/trade-offs
 
 ---
 
@@ -71,7 +77,7 @@ https://docs.cypress.io/guides/references/trade-offs
 https://docs.cypress.io/guides/references/roadmap#Upcoming-features
 
 | Status       | Feature                     | Released |
-|--------------|-----------------------------|----------|
+| ------------ | --------------------------- | -------- |
 | Alpha        | Component Testing           | v7.0.0   |
 | Experimental | Cypress Studio              | v6.3.0   |
 | Experimental | Session API                 | v8.2.0   |
@@ -112,7 +118,7 @@ Real-World Beispiel:
 
 ---
 
-Der Cypress-Dashboard-Service bietet einem u.a.:
+Der Cypress-Dashboard bietet u.a.:
 
 - Load Balancing
 - Zugriff auf aufgezeichnete Testergebnisse (typischerweise aus einer CI-Pipeline)
@@ -144,30 +150,30 @@ Zusätzlich käufliche Premium-Features:
 - Gitlab for Enterprise (coming soon)
 - Single Sign-On
 
->  https://cypress.io/pricing/
+> https://cypress.io/pricing/
 
 ---
 
 ### Component Testing (noch in Alpha-Status)
 
-https://docs.cypress.io/guides/component-testing/introduction
+> https://docs.cypress.io/guides/component-testing/introduction
 
-![concepts](images/component-testing.png)
+![concepts](images/component-testing.png){ width=80% }
 
 ---
 
 ```javascript
-import * as React from 'react'
-import { mount } from '@cypress/react'
-import Button from './Button'
+import * as React from "react";
+import { mount } from "@cypress/react";
+import Button from "./Button";
 
-it('Button', () => {
-  mount(<Button>Test button</Button>)
-  cy.get('button').contains('Test button').click()
-})
+it("Button", () => {
+  mount(<Button>Test button</Button>);
+  cy.get("button").contains("Test button").click();
+});
 ```
 
-***
+---
 
 - Komponenten können isoliert getestet werden
 
@@ -179,7 +185,7 @@ it('Button', () => {
 
 ### Visual Testing
 
-https://docs.cypress.io/guides/tooling/visual-testing
+> https://docs.cypress.io/guides/tooling/visual-testing
 
 ![concepts](images/visual-testing.png)
 
@@ -193,17 +199,14 @@ https://docs.cypress.io/guides/tooling/visual-testing
 
 ```javascript
 // Beispiel: https://github.com/meinaart/cypress-plugin-snapshots
-
 it('completes todo', () => {
-  cy.visit('/')
-  cy.get('.new-todo').type('write tests{enter}')
-  cy.contains('.todo-list li', 'write tests').find('.toggle').check()
-
-  cy.contains('.todo-list li', 'write tests').should('have.class', 'completed')
-
-  // run 'npm i cypress-plugin-snapshots -S'
-  // capture the element screenshot and
-  // compare to the baseline image
+  cy.visit('/');
+  cy.get('.new-todo').type('write tests{enter}');
+  cy.contains('.todo-list li', 'write tests');
+    .find('.toggle')
+    .check()
+    .should('have.class', 'completed');
+  // capture screenshot and compare to the baseline image
   cy.get('.todoapp').toMatchImageSnapshot({
     imageConfig: {
       threshold: 0.001,
@@ -244,7 +247,7 @@ Code Coverage kann mit Istanbul angezeigt werden.
 
 > Für .lcov coverage-Files gibt es IDE-Plugins (z.B. Coverage-Gutters)
 
-![Coverage-Gutters](images//coverage-gutters-features-1.gif)
+![Coverage-Gutters](images//coverage-gutters-features-1.gif){ width=60% }
 
 Coverage kann auch in CI integriert werden, z.B. auf GitHub: https://www.cypress.io/blog/2019/10/22/show-code-coverage-on-gitlab-ci/
 
@@ -252,7 +255,7 @@ Coverage kann auch in CI integriert werden, z.B. auf GitHub: https://www.cypress
 
 ### Reporter
 
-https://docs.cypress.io/guides/tooling/reporters
+> https://docs.cypress.io/guides/tooling/reporters
 
 ---
 
@@ -270,7 +273,7 @@ https://docs.cypress.io/guides/tooling/reporters
 
 > Es können eigene Reporter erstellt werden oder Community-Reporter per NPM installiert werden, z.B.
 
-- HTML-Reports mittels Mochawesome (http://antontelesh.github.io/testing/2019/02/04/mochawesome-merge.html)
+- HTML-Reports mittels Mochawesome: http://antontelesh.github.io/testing/2019/02/04/mochawesome-merge.html
 
 - Ein Beispiel für einen Custom-Reporter existiert für die TestbenchCS: https://github.com/testbench-cs-imbus/tbcs-api-cypress-parser
 
@@ -278,23 +281,23 @@ https://docs.cypress.io/guides/tooling/reporters
 
 ### Best-Practices
 
->https://docs.cypress.io/guides/references/best-practices
+> https://docs.cypress.io/guides/references/best-practices
 >
->https://www.youtube.com/watch?v=5XQOK0v_YRE
+> https://www.youtube.com/watch?v=5XQOK0v_YRE
 
 ---
 
 **Die wichtigsten Best-Practices...**
 
 - Tests sollen unabhängig voneinander sein
-  >**Tipp:** Zum prüfen `.only` beim Test setzen. Wird dieser auch beim wiederholten Durchlauf grün sollte alles ok sein
+  - **Tipp:** `.only` beim Test setzen. Wird Test wiederholt grün ->
 - Shortcuts nutzen: z.B. nur bei Login-Test selbst über UI, sonst API -> Performance!
 - data-cy-Attribute als Selektoren nutzen
 - after/afterEach-Hook wird nicht garantiert ausgeführt. Weitere Tests sollten nicht von einem TearDown-CleanUp abhängig sein.
-  >**Besser:** before/beforeEach-Hook nutzen
+  - **Besser:** before/beforeEach-Hook nutzen
 - Warten auf Events (z.B. REST-Call fertig) statt z.B. wait von 2 Sekunden -> Flakiness!
 - Commands und Assertions abwechseln: nur das letzte Kommando wird im Fehlerfall retried!!!
-  >```cy.get('.list li').should('have.length', 2).find('label').should('contain', 'todo B')```
+  > `cy.get('.list li').should('have.length', 2).find('label').should('contain', 'todo B')`
 - Bei Tests die trotz Best-Practices und Refactoring Flaky bleiben -> Test-Retries nutzen
 - cy.clock() bei Bedarf nutzen um sporadische Timestamp-Fehler zu vermeiden
 
@@ -315,7 +318,7 @@ https://docs.cypress.io/guides/tooling/reporters
 - offizieller Cypress-Workshop: https://github.com/cypress-io/testing-workshop-cypress
 - Cypress Blog: https://www.cypress.io/blog
 - Recipes: https://docs.cypress.io/examples/examples/recipes
-- Chrome-Plugins:
+- Chrome-Plugins (durch Cypress Studio bald überflüssig):
   - Cypress-Recorder: https://chrome.google.com/webstore/detail/cypress-scenario-recorder/fmpgoobcionmfneadjapdabmjfkmfekb
   - Cypress Scenario Recorder: https://chrome.google.com/webstore/detail/cypress-scenario-recorder/fmpgoobcionmfneadjapdabmjfkmfekb
 
@@ -323,7 +326,7 @@ https://docs.cypress.io/guides/tooling/reporters
 
 # Vergleich mit anderen Tools
 
-https://docs.cypress.io/guides/overview/key-differences
+> https://docs.cypress.io/guides/overview/key-differences
 
 ---
 
@@ -348,6 +351,7 @@ flowchart TB
 			end
 		end
 ```
+
 ---
 
 **Cypress:** läuft im run-loop der Applikation
@@ -361,7 +365,7 @@ flowchart TB
 ---
 
 |                       | Cypress                 | Puppeteer                    | Playwright                                | TestCafe                                                      |
-|-----------------------|-------------------------|------------------------------|-------------------------------------------|---------------------------------------------------------------|
+| --------------------- | ----------------------- | ---------------------------- | ----------------------------------------- | ------------------------------------------------------------- |
 | Webseite              | https://cypress.io      | https://pptr.dev             | https://playwright.dev                    | https://testcafe.io                                           |
 | Anforderungen         | Node.js 12+             | Node 10.18.1+                | Node.js 12+                               | Node.js 10+                                                   |
 | Browser               | Chromium, Edge, Firefox | Chromium                     | Chrome/ium, Edge, Firefox, WebKit         | Chromium, Edge, Firefox, Safari, IE11+, Chrome-/Safari-Mobile |
@@ -390,13 +394,15 @@ flowchart TB
 
 ## Fazit
 
-- Sehr gute Dokumenation
+- Cypress hat eine sehr gute Dokumenation
 
 - leicht zu lernen
 
 - schnell eingerichtet (auch Pipeline)
 
-- Cypress ist sehr Developer-freundlich -> Gut für Shift-Left
+- viele Plugins verfügbar
+
+- Cypress ist sehr Developer-freundlich -> Gut für Shift-Left!
 
 - Cypress hat eine andere Zielgruppe als z.B. Selenium -> Lässt sich auch gut zusammen verwenden!
 
