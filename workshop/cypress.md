@@ -1,5 +1,5 @@
 ---
-theme: "league"
+theme: "moon"
 ---
 
 <style>
@@ -172,8 +172,6 @@ it("Button", () => {
   cy.get("button").contains("Test button").click();
 });
 ```
-
----
 
 - Komponenten können isoliert getestet werden
 
