@@ -66,6 +66,21 @@ https://docs.cypress.io/guides/references/trade-offs
 
 ---
 
+## Roadmap
+
+https://docs.cypress.io/guides/references/roadmap#Upcoming-features
+
+| Status       | Feature                     | Released |
+|--------------|-----------------------------|----------|
+| Alpha        | Component Testing           | v7.0.0   |
+| Experimental | Cypress Studio              | v6.3.0   |
+| Experimental | Session API                 | v8.2.0   |
+| in progress  | WebKit Support              | -        |
+| in progress  | Visit multiple superdomains | -        |
+| in progress  | Iframe Support              | -        |
+
+---
+
 ## Disabled Barriers
 
 > Cypress deaktiviert störende Funktionen im Auto-Test: https://docs.cypress.io/guides/guides/launching-browsers#Disabled-Barriers
@@ -87,71 +102,6 @@ https://docs.cypress.io/guides/references/trade-offs
 
 ---
 
-# Vergleich mit anderen Tools
-
-https://docs.cypress.io/guides/overview/key-differences
-
----
-
-> Protractor mittlerweile deprecated: https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49
-
-> Für Migrations-Projekte: https://docs.cypress.io/guides/migrating-to-cypress/protractor#Introduction
-
----
-
-```mermaid
-flowchart TB
-		subgraph Selenium
-			direction TB
-			a1(Test Code)-->a2(Selenium WebDriver)-->a3(Browser)-->a4(Application)
-		end
-
-		subgraph Cypress
-			direction TB
-			b1(Test Code)-->b2(Cypress Framework)
-			subgraph Browser
-			b2-->b3(Universal)-->b4(Application)
-			end
-		end
-```
----
-
-| Cypress                           | Selenium                                     |
-|-----------------------------------|----------------------------------------------|
-| läuft im run-loop der Applikation | Schickt commands über Treiber an den Browser |
-
-> Gilt analog für W3C WebDriverAPI-basierte Tools wie WebdriverIO und NightwatchJS
-
-> Details siehe: https://www.browserstack.com/guide/cypress-vs-webdriverio
-
----
-
-|                       | Cypress                 | Puppeteer                    | Playwright                                | TestCafe                                                      |
-|-----------------------|-------------------------|------------------------------|-------------------------------------------|---------------------------------------------------------------|
-| Webseite              | https://cypress.io      | https://pptr.dev             | https://playwright.dev                    | https://testcafe.io                                           |
-| Anforderungen         | Node.js 12+             | Node 10.18.1+                | Node.js 12+                               | Node.js 10+                                                   |
-| Browser               | Chromium, Edge, Firefox | Chromium                     | Chrome/ium, Edge, Firefox, WebKit         | Chromium, Edge, Firefox, Safari, IE11+, Chrome-/Safari-Mobile |
-| Cross-Browser Testing | nein                    | nur für unterstütze Browser  | ja                                        | ja                                                            |
-| Multi-Tab Testing     | nur indirekt            | ja                           | ja                                        | ja                                                            |
-| direkter DOM-Zugriff  | ja                      | ja                           | ja                                        | ja                                                            |
-| Docker-Images         | ja                      | siehe Troubleshooting/Docker | ja                                        | ja                                                            |
-| Test Recorder         | Cypress Studio in alpha | ab Chrome 92: in DevTools    | Playwright codegen                        | kostenpflichtiger Visual Test Recorder                        |
-| Component Testing     | ja                      | nein                         | nein                                      | nein                                                          |
-| Visual Testing        | ja                      | ja                           | ja                                        | ja                                                            |
-| Parallele Tests       | unterstützt je Browser  | ja                           | ja                                        | ja                                                            |
-| Test Retries          | ja                      | ja                           | ja                                        | ja                                                            |
-| Automatic Wait        | ja                      | nein                         | ja                                        | ja                                                            |
-| Network Interception  | ja                      | ja                           | ja                                        | ja                                                            |
-| Time Travel Debugger  | ja                      | nein                         | Trace Viewer + VS-Code-Debugging          | nein                                                          |
-| Dashboard             | ja                      | nein                         | nein                                      | in Alpha Test                                                 |
-| Sprache               | JavaScript/TypeScript   | JavaScript/Typescript        | JavaScript/Typescript, Python, Java, .NET | JavaScript/Typescript                                         |
-
----
-
-> Lösungen mit Puppeteer, Playwright, TestCafe, WebDriver oder Appium lassen sich gut mit Codecept kombinieren: https://codecept.io
-
----
-
 ### Dashboard
 
 Real-World Beispiel:
@@ -164,8 +114,6 @@ Real-World Beispiel:
 
 Der Cypress-Dashboard-Service bietet einem u.a.:
 
-der Free-Tier ist auf 3 User und 500 Test-Ergebnisse/Monat limitiert!
-
 - Load Balancing
 - Zugriff auf aufgezeichnete Testergebnisse (typischerweise aus einer CI-Pipeline)
 - Stack-Trace fehlgeschlagener Tests
@@ -177,18 +125,26 @@ der Free-Tier ist auf 3 User und 500 Test-Ergebnisse/Monat limitiert!
 - Integrationen für Slack, GitHub, GitLab, Bitbucket
 - Analytics (u.a. Übersicht über häufigste Fehler)
 
+> der Free-Tier ist auf 3 User und 500 Test-Ergebnisse/Monat limitiert!
+
 ---
 
-Die Premium-Features enthalten zusätzlich je nach gewähltem Plan: https://cypress.io/pricing/
+Zusätzlich käufliche Premium-Features:
 
 - Flake Detection
 - Smart Orchestration
+  - Parallelization
+  - Load Balancing
+  - Run failed specs first
+  - Cancel test run when a test fails
 - Flake Mangement (coming soon)
 - Jira Integration
 - Mail-Support
 - Github-Enterprise (coming soon)
 - Gitlab for Enterprise (coming soon)
 - Single Sign-On
+
+>  https://cypress.io/pricing/
 
 ---
 
@@ -214,7 +170,9 @@ it('Button', () => {
 ***
 
 - Komponenten können isoliert getestet werden
+
 - Vergleichbar mit Jest-Komponententests in Storybook
+
 - Aktuell verfügbar für React/Next und Vue über Webpack (Vite ist noch experimentell)
 
 ---
@@ -259,8 +217,10 @@ it('completes todo', () => {
 ### CI/CD
 
 - Github-Action verfügbar: https://github.com/marketplace/actions/cypress-io
+
 - Gitlab: https://docs.cypress.io/guides/continuous-integration/gitlab-ci#Basic-Setup
-- Jenkins: Bei Testbench CS wurde das Docker-Image in der Pipeline verwendet und die Reports im junit-Format gepublished
+
+- Jenkins: Testbench CS nutzt das Docker-Image in der Pipeline mit Reports im jUnit-Format
 
 ---
 
@@ -270,13 +230,19 @@ https://docs.cypress.io/guides/tooling/code-coverage#Introduction
 
 ![Istanbul Report](images/istanbul.png)
 
-Code Coverage kann mit Istanbul (https://istanbul.js.org/) angezeigt werden.
-Dies ist über einen zusatzlichen Build-Schritt in zwei Varianten möglich:
+---
+
+Code Coverage kann mit Istanbul angezeigt werden.
+
+> https://istanbul.js.org/
 
 - Über das nyc-Modul (https://github.com/istanbuljs/nyc) dem Kommandzeilen-Interface von Istanbul
+
 - Über Code-Transiplierung mittels dem Babel-Plugin-Istanbul (https://github.com/istanbuljs/babel-plugin-istanbul)
 
-Für .lcov coverage-Files gibt es auch Plugins für IDEs (z.B. Coverage-Gutters für VS-Code):
+---
+
+> Für .lcov coverage-Files gibt es IDE-Plugins (z.B. Coverage-Gutters)
 
 ![Coverage-Gutters](images//coverage-gutters-features-1.gif)
 
@@ -293,31 +259,24 @@ https://docs.cypress.io/guides/tooling/reporters
 #### Standard Reporter
 
 - Default-Reporter ist der spec-Reporter der Informationen auf STDOUT ausgibt
+
 - jeder Mocha-Reporter (https://mochajs.org/#reporters) kann verwendet werden, da Cypress auf Mocha basiert
+
 - der TeamCity und jUnit-Reporter (wird bei TestbenchCS im Jenkins verwendet) sind bereits in Cypress integriert und müssen nicht extra installiert werden
 
 ---
 
 #### Custom Reporter
 
-Weiter Reporter können über NPM installiert werden, z.B. HTML-Reports mittels Mochawesome (http://antontelesh.github.io/testing/2019/02/04/mochawesome-merge.html)
+> Es können eigene Reporter erstellt werden oder Community-Reporter per NPM installiert werden, z.B.
 
-Ein Beispiel für einen Custom-Reporter existiert für die TestbenchCS: https://github.com/testbench-cs-imbus/tbcs-api-cypress-parser
+- HTML-Reports mittels Mochawesome (http://antontelesh.github.io/testing/2019/02/04/mochawesome-merge.html)
+
+- Ein Beispiel für einen Custom-Reporter existiert für die TestbenchCS: https://github.com/testbench-cs-imbus/tbcs-api-cypress-parser
 
 ---
 
 ### Best-Practices
-
-https://docs.cypress.io/guides/core-concepts/introduction-to-cypress
-https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests
-https://docs.cypress.io/guides/core-concepts/retry-ability
-https://docs.cypress.io/guides/core-concepts/interacting-with-elements
-https://docs.cypress.io/guides/core-concepts/variables-and-aliases
-https://docs.cypress.io/guides/core-concepts/conditional-testing
-https://docs.cypress.io/guides/core-concepts/test-runner
-https://docs.cypress.io/guides/core-concepts/cypress-studio
-
----
 
 - siehe: https://docs.cypress.io/guides/references/best-practices
 - YouTube Talk: https://www.youtube.com/watch?v=5XQOK0v_YRE
@@ -327,24 +286,10 @@ https://docs.cypress.io/guides/core-concepts/cypress-studio
 ### Plugins
 
 - https://docs.cypress.io/guides/tooling/plugins-guide
+
 - https://docs.cypress.io/plugins/directory
 
-Es ist möglich Cypress auch mit eigenen Plugins zu erweitern :-)
-
----
-
-### Roadmap
-
-https://docs.cypress.io/guides/references/roadmap#Upcoming-features
-
-| Status       | Feature                     | Released |
-|--------------|-----------------------------|----------|
-| Alpha        | Component Testing           | v7.0.0   |
-| Experimental | Cypress Studio              | v6.3.0   |
-| Experimental | Session API                 | v8.2.0   |
-| in progress  | WebKit Support              | -        |
-| in progress  | Visit multiple superdomains | -        |
-| in progress  | Iframe Support              | -        |
+> Es ist möglich Cypress auch mit eigenen Plugins zu erweitern :-)
 
 ---
 
@@ -352,11 +297,92 @@ https://docs.cypress.io/guides/references/roadmap#Upcoming-features
 
 - offizieller Cypress-Workshop: https://github.com/cypress-io/testing-workshop-cypress
 - Cypress Blog: https://www.cypress.io/blog
-- Recipes: https://docs.cypress.io/examples/examples/recipeshttps://docs.cypress.io/examples/examples/recipes
+- Recipes: https://docs.cypress.io/examples/examples/recipes
 - Chrome-Plugins:
   - Cypress-Recorder: https://chrome.google.com/webstore/detail/cypress-scenario-recorder/fmpgoobcionmfneadjapdabmjfkmfekb
   - Cypress Scenario Recorder: https://chrome.google.com/webstore/detail/cypress-scenario-recorder/fmpgoobcionmfneadjapdabmjfkmfekb
 
 ---
 
+# Vergleich mit anderen Tools
+
+https://docs.cypress.io/guides/overview/key-differences
+
+---
+
+> Protractor mittlerweile deprecated: https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49
+
+> Für Migrations-Projekte: https://docs.cypress.io/guides/migrating-to-cypress/protractor#Introduction
+
+---
+
+```mermaid
+flowchart TB
+		subgraph Selenium
+			direction TB
+			a1(Test Code)-->a2(Selenium WebDriver)-->a3(Browser)-->a4(Application)
+		end
+
+		subgraph Cypress
+			direction TB
+			b1(Test Code)-->b2(Cypress Framework)
+			subgraph Browser
+			b2-->b3(Universal)-->b4(Application)
+			end
+		end
+```
+---
+
+**Cypress:** läuft im run-loop der Applikation
+
+**Selenium:** Sendet commands über Treiber an Browser
+
+> Gilt analog für W3C WebDriverAPI-basierte Tools wie WebdriverIO und NightwatchJS
+
+> Details siehe: https://www.browserstack.com/guide/cypress-vs-webdriverio
+
+---
+
+|                       | Cypress                 | Puppeteer                    | Playwright                                | TestCafe                                                      |
+|-----------------------|-------------------------|------------------------------|-------------------------------------------|---------------------------------------------------------------|
+| Webseite              | https://cypress.io      | https://pptr.dev             | https://playwright.dev                    | https://testcafe.io                                           |
+| Anforderungen         | Node.js 12+             | Node 10.18.1+                | Node.js 12+                               | Node.js 10+                                                   |
+| Browser               | Chromium, Edge, Firefox | Chromium                     | Chrome/ium, Edge, Firefox, WebKit         | Chromium, Edge, Firefox, Safari, IE11+, Chrome-/Safari-Mobile |
+| Cross-Browser Testing | nein                    | nur für unterstütze Browser  | ja                                        | ja                                                            |
+| Multi-Tab Testing     | nur indirekt            | ja                           | ja                                        | ja                                                            |
+| direkter DOM-Zugriff  | ja                      | ja                           | ja                                        | ja                                                            |
+| Docker-Images         | ja                      | siehe Troubleshooting/Docker | ja                                        | ja                                                            |
+| Test Recorder         | Cypress Studio in alpha | ab Chrome 92: in DevTools    | Playwright codegen                        | kostenpflichtiger Visual Test Recorder                        |
+| Component Testing     | ja                      | nein                         | nein                                      | nein                                                          |
+| Visual Testing        | ja                      | ja                           | ja                                        | ja                                                            |
+| Parallele Tests       | unterstützt je Browser  | ja                           | ja                                        | ja                                                            |
+| Test Retries          | ja                      | ja                           | ja                                        | ja                                                            |
+| Automatic Wait        | ja                      | nein                         | ja                                        | ja                                                            |
+| Network Interception  | ja                      | ja                           | ja                                        | ja                                                            |
+| Time Travel Debugger  | ja                      | nein                         | Trace Viewer + VS-Code-Debugging          | nein                                                          |
+| Dashboard             | ja                      | nein                         | nein                                      | in Alpha Test                                                 |
+| Sprache               | JavaScript/TypeScript   | JavaScript/Typescript        | JavaScript/Typescript, Python, Java, .NET | JavaScript/Typescript                                         |
+
+---
+
+![Codecept-Architecture](images//codecept-architecture.svg)
+
+> Lösungen mit Puppeteer, Playwright, TestCafe, WebDriver oder Appium lassen sich gut mit Codecept kombinieren: https://codecept.io
+
+---
+
 ## Fazit
+
+- Sehr gute Dokumenation
+
+- leicht zu lernen
+
+- schnell eingerichtet (auch Pipeline)
+
+- Cypress ist sehr Developer-freundlich -> Gut für Shift-Left
+
+- Cypress hat eine andere Zielgruppe als z.B. Selenium -> Lässt sich auch gut zusammen verwenden!
+
+---
+
+## Fragen?
