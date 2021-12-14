@@ -278,8 +278,25 @@ https://docs.cypress.io/guides/tooling/reporters
 
 ### Best-Practices
 
-- siehe: https://docs.cypress.io/guides/references/best-practices
-- YouTube Talk: https://www.youtube.com/watch?v=5XQOK0v_YRE
+>https://docs.cypress.io/guides/references/best-practices
+>
+>https://www.youtube.com/watch?v=5XQOK0v_YRE
+
+---
+
+**Die wichtigsten Best-Practices...**
+
+- Tests sollen unabhängig voneinander sein
+  >**Tipp:** Zum prüfen `.only` beim Test setzen. Wird dieser auch beim wiederholten Durchlauf grün sollte alles ok sein
+- Shortcuts nutzen: z.B. nur bei Login-Test selbst über UI, sonst API -> Performance!
+- data-cy-Attribute als Selektoren nutzen
+- after/afterEach-Hook wird nicht garantiert ausgeführt. Weitere Tests sollten nicht von einem TearDown-CleanUp abhängig sein.
+  >**Besser:** before/beforeEach-Hook nutzen
+- Warten auf Events (z.B. REST-Call fertig) statt z.B. wait von 2 Sekunden -> Flakiness!
+- Commands und Assertions abwechseln: nur das letzte Kommando wird im Fehlerfall retried!!!
+  >```cy.get('.list li').should('have.length', 2).find('label').should('contain', 'todo B')```
+- Bei Tests die trotz Best-Practices und Refactoring Flaky bleiben -> Test-Retries nutzen
+- cy.clock() bei Bedarf nutzen um sporadische Timestamp-Fehler zu vermeiden
 
 ---
 
