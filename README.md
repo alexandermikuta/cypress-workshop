@@ -1,15 +1,4 @@
 # cypress-workshop
-## Roadmap des Workshops
-
-- [x] Beschreibung der Requirements
-- [x] Beschreibung der IDE-Einrichtung
-- [x] Beschreibung des Frontend-Projektes
-- [x] Beschreibung Cypress-Installation
-- [x] Beschreibung der CI/CD-Pipeline
-  - [x] Github
-  - [x] Cypress-Dashboard mit Projekt/Github verknüpfen
-
-## Allgemeines
 
 :bulb: Im Ordner "workshop" befinden sich die Slides dises Workshops
 
