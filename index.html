@@ -1,7 +1,740 @@
-<html><head></head><body><pre>
-svg found: images//codecept-architecture.svg, inlining...
-Error running filter /markdeck/lib/inline-svg.lua:
-/markdeck/lib/inline-svg.lua:6: attempt to index a nil value (local 'f')
-stack traceback:
-	/markdeck/lib/inline-svg.lua:6: in function 'Image'
-</pre></body></html>
+<!doctype html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+
+    <title>slides by markdeck</title>
+
+    <meta name="description" content="slides by markdeck" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="assets/framework/reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="assets/framework/reveal.js/css/theme/simple.css" />
+    <link rel="shortcut icon" href="assets/css/theme/favicon.ico" />
+
+    <link rel="stylesheet" href="assets/markdeck/styles/zenburn.css" />
+
+        <link rel="stylesheet" type="text/css" href="assets/3rdparty/asciinema-player.css" />
+    
+            
+    <link rel="stylesheet" href="assets/markdeck/css/markdeck.revealjs.css" />
+    <link rel="stylesheet" href="assets/css/slides.css" />
+
+    <script>
+        window.pdf_render = window.location.search.match(/render=pdf/gi) != null;
+        if (window.pdf_render) {
+            document.write('<link rel="stylesheet" href="assets/css/render-pdf.css" type="text/css">');
+        }
+    </script>
+
+    <link href="assets/css/rerendering.css" rel="stylesheet"></link>
+
+
+</head>
+<body>
+
+
+    <div class="rerendering-message"><h1>R E R E N D E R I N G</h1></div>
+        <div class="markdeck-logo"><a href="https://github.com/arnehilmann/markdeck">powered by markdeck</a></div>
+    
+    <div class="header"></div>
+    <div class="footer"></div>
+
+    <div class="reveal markdeck">
+        <div class="slides">
+
+<style>
+th { font-size: 22px; }
+td { font-size: 16px; }
+li { font-size: 22px; }
+blockquote { font-size: 22px; }
+</style>
+<section id="cypress" class="level1">
+<h1>Cypress</h1>
+<hr />
+<section id="praxis-demo" class="level2">
+<h2>Praxis-Demo</h2>
+<p>Zum starten der Demo muss folgendes ausgeführt werden:</p>
+<p>In Terminal 1:</p>
+<pre class="bash"><code>cd nextjs-frontend
+npm install
+npm run build
+npm run start</code></pre>
+<p>In Terminal 2:</p>
+<pre class="bash"><code>cd nextjs-frontend
+npm run cypress</code></pre>
+<hr />
+</section>
+<section id="warum-cypress" class="level2">
+<h2>Warum Cypress?</h2>
+<p><em>https://docs.cypress.io/guides/overview/why-cypress</em></p>
+<figure>
+<img src="images/cypress-capabilities.png" style="width:70.0%" alt="" /><figcaption>concepts</figcaption>
+</figure>
+<blockquote>
+<ul>
+<li>Testen mit verschiedenen Viewports möglich</li>
+<li>Zugriff auf Local-Storage, Service-Worker, usw.</li>
+</ul>
+</blockquote>
+<hr />
+</section>
+<section id="trade-offs" class="level2">
+<h2>Trade-Offs</h2>
+<blockquote>
+<p>https://docs.cypress.io/guides/references/trade-offs</p>
+</blockquote>
+<hr />
+<p><strong>Dauerhafte Trade-Offs</strong></p>
+<ul>
+<li>läuft im Browser: gut für direkten (Shadow-)DOM-Zugriff. Schlecht um Dinge außerhalb eines Browsers zu testen.</li>
+<li>Kein Support für mehrere Browser-Tabs</li>
+<li>Keine Automatisierung mehrerer Browser zur gleichen Zeit. Nur indirekt, z.B. weiteren Backend-Prozess mit Selenium, Puppeteer, …</li>
+<li>Jeder Test ist an einen single-origin (gleicher Port, gleiche Hauptdomain) gebunden</li>
+<li>nicht gedacht für: Web-Indexing, Spidering, Performance-Testing</li>
+<li>Kein natives Testen mobiler Apps möglich. Nur einfache Funktionstests, falls Mobile-App im Browser entwickelt wird (z.B. mit Ionic)
+<ul>
+<li>Mögliche Alternativen: z.B. Appium, Detox oder Ranorex</li>
+</ul></li>
+</ul>
+<hr />
+<p><strong>Temporäre Trade-Offs</strong></p>
+<ul>
+<li>Limitierter iframe-Support</li>
+<li>kein cy.hover()</li>
+<li>kein cy.tab()</li>
+</ul>
+<hr />
+</section>
+<section id="roadmap" class="level2">
+<h2>Roadmap</h2>
+<p>https://docs.cypress.io/guides/references/roadmap#Upcoming-features</p>
+<table>
+<thead>
+<tr class="header">
+<th>Status</th>
+<th>Feature</th>
+<th>Released</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alpha</td>
+<td>Component Testing</td>
+<td>v7.0.0</td>
+</tr>
+<tr class="even">
+<td>Experimental</td>
+<td>Cypress Studio</td>
+<td>v6.3.0</td>
+</tr>
+<tr class="odd">
+<td>Experimental</td>
+<td>Session API</td>
+<td>v8.2.0</td>
+</tr>
+<tr class="even">
+<td>in progress</td>
+<td>WebKit Support</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>in progress</td>
+<td>Visit multiple superdomains</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>in progress</td>
+<td>Iframe Support</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</section>
+<section id="disabled-barriers" class="level2">
+<h2>Disabled Barriers</h2>
+<blockquote>
+<p>Cypress deaktiviert störende Funktionen im Auto-Test: https://docs.cypress.io/guides/guides/launching-browsers#Disabled-Barriers</p>
+</blockquote>
+<ul>
+<li>Ignoriert Zertifikats-Fehler</li>
+<li>Erlaubt blockiert Pop-Ups</li>
+<li>Deaktiviert ‘Passwort speichern’</li>
+<li>Deaktiviert ‘Autofill für Formulare und Passwörter’</li>
+<li>Deaktiviert Nachfrage nach Standbrowser</li>
+<li>Deaktiviert Benachrichtigung über neu gefundene Geräte</li>
+<li>Deaktiviert Browser-Übersetzungen</li>
+<li>Deaktiviert Wiederherstellen von Sessions</li>
+<li>Deaktiviert Hintergrund Netwerk-Verkehr</li>
+<li>Deaktiviert Hintergrund und Renderer Drosselung</li>
+<li>Deaktiviert Dialoge mit Berechtigungsnachfragen, z.B. für Mikrofon, Webcam, …</li>
+<li>Deaktiviert Benutzergesten für Autoplay von Videos</li>
+</ul>
+<blockquote>
+<p>kann bei Bedarf über Kommandozeilen-Parameter angepasst werden!</p>
+</blockquote>
+<hr />
+<section id="dashboard" class="level3">
+<h3>Dashboard</h3>
+<p>Real-World Beispiel:</p>
+<ul>
+<li>Dashboard: https://dashboard.cypress.io/projects/7s5okt</li>
+<li>Github-Repo: https://github.com/cypress-io/cypress-realworld-app</li>
+<li>Youtube Einführung: https://www.youtube.com/watch?v=ezp60FUnjGg</li>
+</ul>
+<hr />
+<p>Der Cypress-Dashboard bietet u.a.:</p>
+<ul>
+<li>Load Balancing</li>
+<li>Zugriff auf aufgezeichnete Testergebnisse (typischerweise aus einer CI-Pipeline)</li>
+<li>Stack-Trace fehlgeschlagener Tests</li>
+<li>Screenshots fehlgeschlagener (oder per cy.screenshot() getriggert) Tests</li>
+<li>Video des Test-Runs</li>
+<li>Übersicht über die langsamsten Tests</li>
+<li>Integration der Cypress Tests in den GitHub-Workflow mittels commit status checks: https://docs.cypress.io/guides/dashboard/github-integration#Status-checks -&gt; verhindert das Mergen eines Commits oder Pull-Requests, falls nicht alle Cypress Tests passed sind.</li>
+<li>Integration von Cypress in GitHub mittels Pull Requests: https://docs.cypress.io/guides/dashboard/github-integration#Pull-request-comments</li>
+<li>Integrationen für Slack, GitHub, GitLab, Bitbucket</li>
+<li>Analytics (u.a. Übersicht über häufigste Fehler)</li>
+</ul>
+<blockquote>
+<p>der Free-Tier ist auf 3 User und 500 Test-Ergebnisse/Monat limitiert!</p>
+</blockquote>
+<hr />
+<p>Zusätzlich käufliche Premium-Features:</p>
+<ul>
+<li>Flake Detection</li>
+<li>Smart Orchestration
+<ul>
+<li>Parallelization</li>
+<li>Load Balancing</li>
+<li>Run failed specs first</li>
+<li>Cancel test run when a test fails</li>
+</ul></li>
+<li>Flake Mangement (coming soon)</li>
+<li>Jira Integration</li>
+<li>Mail-Support</li>
+<li>Github-Enterprise (coming soon)</li>
+<li>Gitlab for Enterprise (coming soon)</li>
+<li>Single Sign-On</li>
+</ul>
+<blockquote>
+<p>https://cypress.io/pricing/</p>
+</blockquote>
+<hr />
+</section>
+<section id="component-testing-noch-in-alpha-status" class="level3">
+<h3>Component Testing (noch in Alpha-Status)</h3>
+<blockquote>
+<p>https://docs.cypress.io/guides/component-testing/introduction</p>
+</blockquote>
+<figure>
+<img src="images/component-testing.png" style="width:80.0%" alt="" /><figcaption>concepts</figcaption>
+</figure>
+<hr />
+<pre class="javascript"><code>import * as React from &quot;react&quot;;
+import { mount } from &quot;@cypress/react&quot;;
+import Button from &quot;./Button&quot;;
+
+it(&quot;Button&quot;, () =&gt; {
+  mount(&lt;Button&gt;Test button&lt;/Button&gt;);
+  cy.get(&quot;button&quot;).contains(&quot;Test button&quot;).click();
+});</code></pre>
+<ul>
+<li><p>Komponenten können isoliert getestet werden</p></li>
+<li><p>Vergleichbar mit Jest-Komponententests in Storybook</p></li>
+<li><p>Aktuell verfügbar für React/Next und Vue über Webpack (Vite ist noch experimentell)</p></li>
+</ul>
+<hr />
+</section>
+<section id="visual-testing" class="level3">
+<h3>Visual Testing</h3>
+<blockquote>
+<p>https://docs.cypress.io/guides/tooling/visual-testing</p>
+</blockquote>
+<figure>
+<img src="images/visual-testing.png" alt="" /><figcaption>concepts</figcaption>
+</figure>
+<ul>
+<li>Lokal möglich, z.B. mittels https://github.com/meinaart/cypress-plugin-snapshots</li>
+<li>Cloud-Anbieter:
+<ul>
+<li>https://applitools.com/</li>
+<li>https://percy.io/</li>
+<li>https://happo.io/</li>
+</ul></li>
+</ul>
+<hr />
+<pre class="javascript"><code>// Beispiel: https://github.com/meinaart/cypress-plugin-snapshots
+it(&#39;completes todo&#39;, () =&gt; {
+  cy.visit(&#39;/&#39;);
+  cy.get(&#39;.new-todo&#39;).type(&#39;write tests{enter}&#39;);
+  cy.contains(&#39;.todo-list li&#39;, &#39;write tests&#39;);
+    .find(&#39;.toggle&#39;)
+    .check()
+    .should(&#39;have.class&#39;, &#39;completed&#39;);
+  // capture screenshot and compare to the baseline image
+  cy.get(&#39;.todoapp&#39;).toMatchImageSnapshot({
+    imageConfig: {
+      threshold: 0.001,
+    },
+  })
+})</code></pre>
+<hr />
+</section>
+<section id="cicd" class="level3">
+<h3>CI/CD</h3>
+<ul>
+<li><p>Github-Action verfügbar: https://github.com/marketplace/actions/cypress-io</p></li>
+<li><p>Gitlab: https://docs.cypress.io/guides/continuous-integration/gitlab-ci#Basic-Setup</p></li>
+<li><p>Jenkins: Testbench CS nutzt das Docker-Image in der Pipeline mit Reports im jUnit-Format</p></li>
+</ul>
+<hr />
+</section>
+<section id="code-coverage" class="level3">
+<h3>Code Coverage</h3>
+<p>https://docs.cypress.io/guides/tooling/code-coverage#Introduction</p>
+<figure>
+<img src="images/istanbul.png" alt="" /><figcaption>Istanbul Report</figcaption>
+</figure>
+<hr />
+<p>Code Coverage kann mit Istanbul angezeigt werden.</p>
+<blockquote>
+<p>https://istanbul.js.org/</p>
+</blockquote>
+<ul>
+<li><p>Über das nyc-Modul (https://github.com/istanbuljs/nyc) dem Kommandzeilen-Interface von Istanbul</p></li>
+<li><p>Über Code-Transiplierung mittels dem Babel-Plugin-Istanbul (https://github.com/istanbuljs/babel-plugin-istanbul)</p></li>
+</ul>
+<hr />
+<blockquote>
+<p>Für .lcov coverage-Files gibt es IDE-Plugins (z.B. Coverage-Gutters)</p>
+</blockquote>
+<figure>
+<img src="images//coverage-gutters-features-1.gif" style="width:60.0%" alt="" /><figcaption>Coverage-Gutters</figcaption>
+</figure>
+<p>Coverage kann auch in CI integriert werden, z.B. auf GitHub: https://www.cypress.io/blog/2019/10/22/show-code-coverage-on-gitlab-ci/</p>
+<hr />
+</section>
+<section id="reporter" class="level3">
+<h3>Reporter</h3>
+<blockquote>
+<p>https://docs.cypress.io/guides/tooling/reporters</p>
+</blockquote>
+<hr />
+<section id="standard-reporter" class="level4">
+<h4>Standard Reporter</h4>
+<ul>
+<li><p>Default-Reporter ist der spec-Reporter der Informationen auf STDOUT ausgibt</p></li>
+<li><p>jeder Mocha-Reporter (https://mochajs.org/#reporters) kann verwendet werden, da Cypress auf Mocha basiert</p></li>
+<li><p>der TeamCity und jUnit-Reporter (wird bei TestbenchCS im Jenkins verwendet) sind bereits in Cypress integriert und müssen nicht extra installiert werden</p></li>
+</ul>
+<hr />
+</section>
+<section id="custom-reporter" class="level4">
+<h4>Custom Reporter</h4>
+<blockquote>
+<p>Es können eigene Reporter erstellt werden oder Community-Reporter per NPM installiert werden, z.B.</p>
+</blockquote>
+<ul>
+<li><p>HTML-Reports mittels Mochawesome: http://antontelesh.github.io/testing/2019/02/04/mochawesome-merge.html</p></li>
+<li><p>Ein Beispiel für einen Custom-Reporter existiert für die TestbenchCS: https://github.com/testbench-cs-imbus/tbcs-api-cypress-parser</p></li>
+</ul>
+<hr />
+</section>
+</section>
+<section id="best-practices" class="level3">
+<h3>Best-Practices</h3>
+<blockquote>
+<p>https://docs.cypress.io/guides/references/best-practices</p>
+<p>https://www.youtube.com/watch?v=5XQOK0v_YRE</p>
+</blockquote>
+<hr />
+<p><strong>Die wichtigsten Best-Practices…</strong></p>
+<ul>
+<li>Tests sollen unabhängig voneinander sein
+<ul>
+<li><strong>Tipp:</strong> <code>.only</code> beim Test setzen. Wird Test wiederholt grün -&gt;</li>
+</ul></li>
+<li>Shortcuts nutzen: z.B. nur bei Login-Test selbst über UI, sonst API -&gt; Performance!</li>
+<li>data-cy-Attribute als Selektoren nutzen</li>
+<li>after/afterEach-Hook wird nicht garantiert ausgeführt. Weitere Tests sollten nicht von einem TearDown-CleanUp abhängig sein.
+<ul>
+<li><strong>Besser:</strong> before/beforeEach-Hook nutzen</li>
+</ul></li>
+<li>Warten auf Events (z.B. REST-Call fertig) statt z.B. wait von 2 Sekunden -&gt; Flakiness!</li>
+<li>Commands und Assertions abwechseln: nur das letzte Kommando wird im Fehlerfall retried!!!
+&gt; <code>cy.get('.list li').should('have.length', 2).find('label').should('contain', 'todo B')</code></li>
+<li>Bei Tests die trotz Best-Practices und Refactoring Flaky bleiben -&gt; Test-Retries nutzen</li>
+<li>cy.clock() bei Bedarf nutzen um sporadische Timestamp-Fehler zu vermeiden</li>
+</ul>
+<hr />
+</section>
+<section id="plugins" class="level3">
+<h3>Plugins</h3>
+<ul>
+<li><p>https://docs.cypress.io/guides/tooling/plugins-guide</p></li>
+<li><p>https://docs.cypress.io/plugins/directory</p></li>
+</ul>
+<blockquote>
+<p>Es ist möglich Cypress auch mit eigenen Plugins zu erweitern :-)</p>
+</blockquote>
+<hr />
+</section>
+</section>
+<section id="ressourcen" class="level2">
+<h2>Ressourcen</h2>
+<ul>
+<li>offizieller Cypress-Workshop: https://github.com/cypress-io/testing-workshop-cypress</li>
+<li>Cypress Blog: https://www.cypress.io/blog</li>
+<li>Recipes: https://docs.cypress.io/examples/examples/recipes</li>
+<li>Chrome-Plugins (durch Cypress Studio bald überflüssig):
+<ul>
+<li>Cypress-Recorder: https://chrome.google.com/webstore/detail/cypress-scenario-recorder/fmpgoobcionmfneadjapdabmjfkmfekb</li>
+<li>Cypress Scenario Recorder: https://chrome.google.com/webstore/detail/cypress-scenario-recorder/fmpgoobcionmfneadjapdabmjfkmfekb</li>
+</ul></li>
+</ul>
+<hr />
+</section>
+</section>
+<section id="vergleich-mit-anderen-tools" class="level1">
+<h1>Vergleich mit anderen Tools</h1>
+<blockquote>
+<p>https://docs.cypress.io/guides/overview/key-differences</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>Protractor mittlerweile deprecated: https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49</p>
+</blockquote>
+<blockquote>
+<p>Für Migrations-Projekte: https://docs.cypress.io/guides/migrating-to-cypress/protractor#Introduction</p>
+</blockquote>
+<hr />
+<pre class="mermaid"><code>flowchart TB
+        subgraph Selenium
+            direction TB
+            a1(Test Code)--&gt;a2(Selenium WebDriver)--&gt;a3(Browser)--&gt;a4(Application)
+        end
+
+        subgraph Cypress
+            direction TB
+            b1(Test Code)--&gt;b2(Cypress Framework)
+            subgraph Browser
+            b2--&gt;b3(Universal)--&gt;b4(Application)
+            end
+        end</code></pre>
+<hr />
+<p><strong>Cypress:</strong> läuft im run-loop der Applikation</p>
+<p><strong>Selenium:</strong> Sendet commands über Treiber an Browser</p>
+<blockquote>
+<p>Gilt analog für W3C WebDriverAPI-basierte Tools wie WebdriverIO und NightwatchJS</p>
+</blockquote>
+<blockquote>
+<p>Details siehe: https://www.browserstack.com/guide/cypress-vs-webdriverio</p>
+</blockquote>
+<hr />
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 13%" />
+<col style="width: 16%" />
+<col style="width: 23%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Cypress</th>
+<th>Puppeteer</th>
+<th>Playwright</th>
+<th>TestCafe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Webseite</td>
+<td>https://cypress.io</td>
+<td>https://pptr.dev</td>
+<td>https://playwright.dev</td>
+<td>https://testcafe.io</td>
+</tr>
+<tr class="even">
+<td>Anforderungen</td>
+<td>Node.js 12+</td>
+<td>Node 10.18.1+</td>
+<td>Node.js 12+</td>
+<td>Node.js 10+</td>
+</tr>
+<tr class="odd">
+<td>Browser</td>
+<td>Chromium, Edge, Firefox</td>
+<td>Chromium</td>
+<td>Chrome/ium, Edge, Firefox, WebKit</td>
+<td>Chromium, Edge, Firefox, Safari, IE11+, Chrome-/Safari-Mobile</td>
+</tr>
+<tr class="even">
+<td>Cross-Browser Testing</td>
+<td>nein</td>
+<td>nur für unterstütze Browser</td>
+<td>ja</td>
+<td>ja</td>
+</tr>
+<tr class="odd">
+<td>Multi-Tab Testing</td>
+<td>nur indirekt</td>
+<td>ja</td>
+<td>ja</td>
+<td>ja</td>
+</tr>
+<tr class="even">
+<td>direkter DOM-Zugriff</td>
+<td>ja</td>
+<td>ja</td>
+<td>ja</td>
+<td>ja</td>
+</tr>
+<tr class="odd">
+<td>Docker-Images</td>
+<td>ja</td>
+<td>siehe Troubleshooting/Docker</td>
+<td>ja</td>
+<td>ja</td>
+</tr>
+<tr class="even">
+<td>Test Recorder</td>
+<td>Cypress Studio in alpha</td>
+<td>ab Chrome 92: in DevTools</td>
+<td>Playwright codegen</td>
+<td>kostenpflichtiger Visual Test Recorder</td>
+</tr>
+<tr class="odd">
+<td>Component Testing</td>
+<td>ja</td>
+<td>nein</td>
+<td>nein</td>
+<td>nein</td>
+</tr>
+<tr class="even">
+<td>Visual Testing</td>
+<td>ja</td>
+<td>ja</td>
+<td>ja</td>
+<td>ja</td>
+</tr>
+<tr class="odd">
+<td>Parallele Tests</td>
+<td>unterstützt je Browser</td>
+<td>ja</td>
+<td>ja</td>
+<td>ja</td>
+</tr>
+<tr class="even">
+<td>Test Retries</td>
+<td>ja</td>
+<td>ja</td>
+<td>ja</td>
+<td>ja</td>
+</tr>
+<tr class="odd">
+<td>Automatic Wait</td>
+<td>ja</td>
+<td>nein</td>
+<td>ja</td>
+<td>ja</td>
+</tr>
+<tr class="even">
+<td>Network Interception</td>
+<td>ja</td>
+<td>ja</td>
+<td>ja</td>
+<td>ja</td>
+</tr>
+<tr class="odd">
+<td>Time Travel Debugger</td>
+<td>ja</td>
+<td>nein</td>
+<td>Trace Viewer + VS-Code-Debugging</td>
+<td>nein</td>
+</tr>
+<tr class="even">
+<td>Dashboard</td>
+<td>ja</td>
+<td>nein</td>
+<td>nein</td>
+<td>in Alpha Test</td>
+</tr>
+<tr class="odd">
+<td>Sprache</td>
+<td>JavaScript/TypeScript</td>
+<td>JavaScript/Typescript</td>
+<td>JavaScript/Typescript, Python, Java, .NET</td>
+<td>JavaScript/Typescript</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<figure>
+<img src="images//codecept-architecture.png" alt="" /><figcaption>Codecept-Architecture</figcaption>
+</figure>
+<blockquote>
+<p>Lösungen mit Puppeteer, Playwright, TestCafe, WebDriver oder Appium lassen sich gut mit Codecept kombinieren: https://codecept.io</p>
+</blockquote>
+<hr />
+<section id="fazit" class="level2">
+<h2>Fazit</h2>
+<ul>
+<li><p>Cypress hat eine sehr gute Dokumenation</p></li>
+<li><p>leicht zu lernen</p></li>
+<li><p>schnell eingerichtet (auch Pipeline)</p></li>
+<li><p>viele Plugins verfügbar</p></li>
+<li><p>Cypress ist sehr Developer-freundlich -&gt; Gut für Shift-Left!</p></li>
+<li><p>Cypress hat eine andere Zielgruppe als z.B. Selenium -&gt; Lässt sich auch gut zusammen verwenden!</p></li>
+</ul>
+<hr />
+</section>
+<section id="fragen" class="level2">
+<h2>Fragen?</h2>
+</section>
+</section>
+
+        </div>
+    </div>
+
+    <script src="assets/3rdparty/jquery.js"></script>
+
+    <script type="module">
+        import Reveal from "./assets/framework/reveal.js/dist/reveal.esm.js";
+        import Markdown from "./assets/framework/reveal.js/plugin/markdown/markdown.esm.js";
+        import Notes from "./assets/framework/reveal.js/plugin/notes/notes.esm.js";
+
+        let deck = new Reveal();
+        window.Reveal = deck;
+
+        deck.initialize({
+            width: 960,
+            height: 740,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.5,
+            controls: '',
+            controlsTutorial: 'false',
+            controlsLayout: 'bottom-right',
+            controlsBackArrows: 'faded',
+            progress: 'true',
+            defaultTiming: (Number(120) >= 0) ? Number(120) : 120,
+            slideNumber: 'false',
+            history: 'true',
+            keyboard: 'true',
+            overview: 'true',
+            center: 'true',
+            touch: 'true',
+            loop: '',
+            rtl: '',
+            shuffle: '',
+            fragments: 'true',
+            embedded: 'false',
+            help: 'true',
+            showNotes: '',
+            autoPlayMedia: '',
+
+            autoSlide: (window.pdf_render) ? 0 : Number(0),
+
+            autoSlideStoppable: 'true',
+            autoSlideMethod: 'Reveal.navigateNext',
+            mouseWheel: 'false',
+            hideAddressBar: 'true',
+            previewLinks: 'false',
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            viewDistance: (Number(3) >= 0) ? Number(3) : 3,
+
+            parallaxBackgroundImage: '',
+            parallaxBackgroundSize: '',
+            parallaxBackgroundHorizontal: (null != null && Number(null) >= 0) ? Number(null) : null,
+            parallaxBackgroundVertical: (null != null && Number(null) >= 0) ? Number(null) : null,
+
+            theme: 'moon',
+
+            plugins: [ Markdown, Notes ]
+        });
+
+        function calc_offset_left() {
+            return jQuery(".slides").offset().left / deck.getScale();
+        }
+
+        function flushleft(selector) {
+            function deoffset() {
+                // console.log("flushleft");
+                var rel_offset_left = calc_offset_left();
+                jQuery(selector).each(function(i, e){
+                    jQuery(this).css({"margin-left": "-" + rel_offset_left + "px"});
+                });
+            }
+            deoffset();
+            if (window.pdf_render) {
+                setTimeout(deoffset, 50);
+            } else {
+                jQuery(window).on("resize", deoffset);
+            }
+        }
+
+        function centerleft(selector) {
+            function deoffset() {
+                // console.log("centerleft");
+                var rel_offset_left = calc_offset_left() / 2;
+                jQuery(selector).each(function(i, e){
+                    jQuery(this).css({"margin-left": "-" + rel_offset_left + "px"});
+                });
+            }
+            deoffset();
+            if (window.pdf_render) {
+                setTimeout(deoffset, 50);
+            } else {
+                jQuery(window).on("resize", deoffset);
+            }
+        }
+
+        jQuery(".flushleft").children(".flushleft").removeClass("flushleft");
+        flushleft(".slides section.flushleft");
+    </script>
+
+    <script src='assets/markdeck/highlight.js'></script>
+    <script src='assets/markdeck/highlightjs-line-numbers.min.js'></script>
+    <script>
+        window.hljs = hljs;
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+
+        <script src="assets/3rdparty/asciinema-player.js"></script>
+    
+    <script>
+        jQuery("pre.render_mermaid").each(function(i, old) {
+            var p = jQuery('<p>' + jQuery(old).children("code").text() + '</p>');
+            var attributes = jQuery(old).prop("attributes");
+            jQuery.each(attributes, function() {
+                p.attr(this.name, this.value);
+            });
+            p.addClass("mermaid");
+            old.replaceWith(p[0]);
+        });
+    </script>
+    <script src="assets/3rdparty/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true, theme:'forest'});</script>
+
+    <script>
+        // add notes class to make sure controls are always displayed on the
+        // speaker notes
+        if (window.self !== window.top) {
+            document.body.className += " notes";
+        }
+
+        document.body.className += " ";
+    </script>
+
+
+</body>
+</html>

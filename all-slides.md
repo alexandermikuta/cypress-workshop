@@ -412,7 +412,7 @@ flowchart TB
 
 ------------------------------------------------------------------------
 
-![Codecept-Architecture](images//codecept-architecture.svg)
+![Codecept-Architecture](images//codecept-architecture.png)
 
 > Lösungen mit Puppeteer, Playwright, TestCafe, WebDriver oder Appium lassen sich gut mit Codecept kombinieren: https://codecept.io
 
