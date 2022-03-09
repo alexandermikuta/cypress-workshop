@@ -165,7 +165,7 @@ Zusätzlich käufliche Premium-Features:
 
 > https://docs.cypress.io/guides/component-testing/introduction
 
-![concepts](images/component-testing.png){width="80%"}
+![concepts](images//component-testing.png){width="80%"}
 
 ------------------------------------------------------------------------
 
@@ -344,15 +344,13 @@ Coverage kann auch in CI integriert werden, z.B. auf GitHub: https://www.cypress
 
 ------------------------------------------------------------------------
 
-``` {.render_mermaid args="-w 400" style="font-size: 100%;"}
-flowchart TB
+``` {.mermaid}
+flowchart BT
         subgraph Selenium
-            direction TB
             a1(Test Code)-->a2(Selenium WebDriver)-->a3(Browser)-->a4(Application)
         end
 
         subgraph Cypress
-            direction TB
             b1(Test Code)-->b2(Cypress Framework)
             subgraph Browser
             b2-->b3(Universal)-->b4(Application)
