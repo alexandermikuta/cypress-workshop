@@ -344,7 +344,7 @@ Coverage kann auch in CI integriert werden, z.B. auf GitHub: https://www.cypress
 
 ------------------------------------------------------------------------
 
-``` {.mermaid}
+``` {.render_mermaid args="-w 400" style="font-size: 100%;"}
 flowchart TB
         subgraph Selenium
             direction TB
