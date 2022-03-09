@@ -1,6 +1,8 @@
 # cypress-workshop
 
-:bulb: Im Ordner "workshop" befinden sich die Slides dises Workshops
+:bulb: Im Ordner "workshop" befinden sich die Slides dieses Workshops
+
+The slides can be opened in browser at: https://alexandermikuta.github.io/cypress-workshop/
 
 ## Requirements
 
@@ -28,11 +30,13 @@ npm install --save-dev cypress
 ```
 
 In package.json folgende Zeile zu "scripts"-Objekt hinzufügen:
+
 ```json
 "cypress": "cypress open"
 ```
 
 Folgende File-Struktur wird automatisch bei erstem öffnen von Cypress angelegt:
+
 ```
 .
 ├── downloads
@@ -47,10 +51,11 @@ Folgende File-Struktur wird automatisch bei erstem öffnen von Cypress angelegt:
     └── index.js
 ```
 
-Die Specs werden dabei im  Ordner `cypress/integration` abgelegt.
+Die Specs werden dabei im Ordner `cypress/integration` abgelegt.
 Sobald eine erste Spec geschrieben wurde, kann diese in Cypress ausgeführt werden:
 
 Starten der Cypress-Tests:
+
 ```console
 npm run build
 npm run starter
@@ -61,9 +66,11 @@ npm run cypress (in separatem Terminal-Fenster)
 ## Konfiguration der CI/CD-Pipeline
 
 ### GitHub
+
 .yml-Datei mit Github-Action (`https://github.com/marketplace/actions/cypress-io`) im Ordner `.github/workflows` hinzufügen.
 
 ### Einrichtung des Cypress-Dashboards
+
 - neues Projekt im Cypress-Dashboard anlegen
 - projectId in cypress.json eintragen
 - Secret für `CYPRESS_RECORD_KEY` in Github eintragen
